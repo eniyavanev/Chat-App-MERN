@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import MainContainer from "./Pages/MainContainer";
+import Login from "./Pages/Login";
+import { Route, Routes } from "react-router-dom";
+import Welcome from "./Pages/Welcome";
+import CreateGroup from "./Pages/CreateGroup";
+import ChatArea from "./Pages/ChatArea";
+import OnlineUsers from "./Pages/OnlineUsers";
+import AvailableGroups from "./Pages/AvailableGroups";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App: React.FC = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="bg-[#dddedd] min-h-[100vh] flex justify-center items-center">
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="main" element={<MainContainer />}>
+        <Route path='Welcome' element={<Welcome/>}/>
+        <Route path = 'ChatArea' element={<ChatArea/>}/>
+        <Route path = 'OnlineUsers' element={<OnlineUsers/>}/>
+        <Route path='CreateGroup' element={<CreateGroup/>}/>
+        <Route path='AvailableGroups' element={<AvailableGroups/>}/>
+        </Route>
+      </Routes>
+    </div>
+  );
+};
 
-export default App
+export default App;

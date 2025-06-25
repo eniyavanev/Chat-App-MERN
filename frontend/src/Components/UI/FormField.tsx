@@ -24,7 +24,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     >
       <IoSearch className="text-xl" />
       <input
-        type="text"
+        type="search"
         value={value}
         onChange={onChange}
         placeholder={placeholder}

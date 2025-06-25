@@ -1,11 +1,10 @@
 import React from "react";
-import Sidebar from "../Components/Layouts/Sidebar";
-
 import { Outlet } from "react-router-dom";
+import Sidebar from "../Components/Layouts/Sidebar";
 
 const MainContainer: React.FC = () => {
   return (
-    <div className="h-screen w-full  md:h-[90vh] md:w-[90vw] mx-auto flex  md:flex-row gap-3 rounded-2xl md:p-2 bg-[#f4f5f8]">
+    <div className="w-full h-screen md:h-[90vh] md:w-[90vw] mx-auto flex flex-col md:flex-row gap-3 bg-[#f4f5f8] rounded-2xl md:p-2">
       <Sidebar />
       <Outlet />
     </div>

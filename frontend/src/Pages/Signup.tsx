@@ -4,11 +4,8 @@ import LiveChat from "../assets/Icons/live-chat.png";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUserApi } from "../api/authentication";
 import toast from "react-hot-toast";
-import { login } from "./Redux/Slices/authSlice";
-import { useDispatch } from "react-redux";
 
 const Login: React.FC = () => {
-  const dispatch = useDispatch();
   const [loginInputs, setLoginInputs] = useState({
     email: "",
     password: "",
@@ -25,15 +22,8 @@ const Login: React.FC = () => {
     e.preventDefault();
     try {
       const res = await loginUserApi(loginInputs);
-      console.log(res);
-      
-      const user = res?.data?.user;
-      const token = res?.data?.token;
-      dispatch(login({ user, token }));
-      console.log(res);
-
       toast.success(res?.data?.message || "Login successful");
-      navigate("/main/Welcome");
+      navigate("/main/Welcome"); // or homepage after login
     } catch (err: any) {
       toast.error(err?.response?.data?.message || "Login failed");
     }
@@ -68,10 +58,7 @@ const Login: React.FC = () => {
           <form className="space-y-5" onSubmit={handleSubmit}>
             {/* Email */}
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-600 mb-1"
-              >
+              <label htmlFor="email" className="block text-sm font-medium text-gray-600 mb-1">
                 Email
               </label>
               <input
@@ -89,10 +76,7 @@ const Login: React.FC = () => {
 
             {/* Password */}
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-600 mb-1"
-              >
+              <label htmlFor="password" className="block text-sm font-medium text-gray-600 mb-1">
                 Password
               </label>
               <input

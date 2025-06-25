@@ -17,4 +17,11 @@ export  const persons: { name: string; image: string; message: string; time: str
       message: "Let’s meet tomorrow. It’s really important.",
       time: "4:45 PM",
     },
+    {
+      name: "Mike Johnson",
+      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      message: "Let’s meet tomorrow. It’s really important.",
+      time: "4:45 PM",
+    },
+    
   ];

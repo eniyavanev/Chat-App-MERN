@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchInput from "../Components/UI/FormField";
 import type { RootState } from "./Redux/Store/store";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 const OnlineUsers: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -49,9 +50,13 @@ const OnlineUsers: React.FC = () => {
     ? "hover:bg-gray-800"
     : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50";
   const theme = dark ? "bg-gray-900 text-white" : "bg-white text-gray-900";
+
   return (
-    <div
-      className={`w-full backdrop-blur-md rounded-2xl p-5 shadow-[0_4px_30px_rgba(0,0,0,0.2)] space-y-5 border ${containerTheme}`}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`w-full backdrop-blur-md rounded-2xl p-5 m-3 shadow-[0_4px_30px_rgba(0,0,0,0.2)] space-y-5 border ${containerTheme}`}
     >
       {/* Header */}
       <div
@@ -76,8 +81,12 @@ const OnlineUsers: React.FC = () => {
       <div className="space-y-3 overflow-y-auto custom-scroll pr-1 max-h-[350px]">
         {filteredUsers.length > 0 ? (
           filteredUsers.map((user, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.06, duration: 0.3 }}
+              whileHover={{ scale: 1.02 }}
               className={`flex items-center gap-4 p-2 rounded-xl ${hoverBg} transition duration-300 cursor-pointer`}
             >
               <div className="w-12 h-12 rounded-full p-1 bg-gradient-to-tr from-blue-500 to-purple-500">
@@ -93,13 +102,19 @@ const OnlineUsers: React.FC = () => {
                 </p>
                 <p className={`text-xs ${statusText}`}>{user.status}</p>
               </div>
-            </div>
+            </motion.div>
           ))
         ) : (
-          <p className="text-sm text-center text-gray-400">No users found</p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-sm text-center text-gray-400"
+          >
+            No users found
+          </motion.p>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
